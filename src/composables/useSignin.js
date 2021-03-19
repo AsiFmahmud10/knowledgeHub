@@ -1,24 +1,28 @@
 import {ref} from 'vue'
 import {AuthRef} from '../firebase/config'
 
+const error = ref(null)
 
-const signIn = async(email,password)=>{
+const usesignIn = async(email,password)=>{
+
 
 try{
-    const res = AuthRef.signInWithEmailAndPassword(email , password )
+    const res = await AuthRef.signInWithEmailAndPassword(email , password )
+    return {res} // its just return a promise. nothing fancy
+
 }
 catch(err){
-    console.log(error)
-
+     
+    console.log(err.message)
+    error.value = err.message
 }
 
-return {res,error}
 
 }
 
 
 export { 
 
-    res, error
+     error , usesignIn
 }
  
