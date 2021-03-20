@@ -3,7 +3,7 @@
   <form @submit.prevent="handleSignup">
     <input type="email" placeholder="email" v-model="email" />
     <input type="password" placeholder="password" v-model="password" />
-   <div class="error"> {{error}} </div>
+   <div class="error" v-if="error"> {{error}} </div>
     <button>Sign up</button>
   </form>
     {{email}} {{password}}
@@ -30,7 +30,6 @@ const handleSignup= async()=>{
          }
 }
       
-   
             return {handleSignup, email, password}
    }
 

@@ -1,10 +1,21 @@
 <template>
   <div id="nav">
+    <Nav/> 
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </div>
   <router-view/>
 </template>
+
+
+<script>
+  import Nav from './components/Navbar'
+   
+  export default {
+    components:{ Nav }
+  }
+
+</script>
 
 <style>
 #app {
@@ -16,7 +27,7 @@
 }
 
 #nav {
-  padding: 30px;
+ 
 }
 
 #nav a {

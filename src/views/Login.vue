@@ -3,14 +3,13 @@
   <form @submit.prevent="handleLogin">
     <input type="email" placeholder="email" v-model="email" />
     <input type="password" placeholder="password" v-model="password" />
-   <div class="error"> {{error}} </div>
+   <div class="error" v-if="error"> {{error}} </div>
+   
     <button>log in</button>
   </form>
     {{email}} {{password}}
 
 </template>
-
-
 
 <script>
 
