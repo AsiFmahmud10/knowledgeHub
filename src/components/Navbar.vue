@@ -13,8 +13,12 @@
                   <router-link :to="{name: 'Signup'}">Sign up</router-link>
                   <router-link :to="{name: 'Login'}">Log In</router-link>
             </div>
+            <div v-else>
+            <router-link :to="{name: 'CreatePlaylist'}">Create BookList</router-link>
+            <button  @click="handleLogout"  >Log out</button>
+
+            </div>
             
-            <button v-if="user" @click="handleLogout"  >Log out</button>
         </div>
   </nav>
 
@@ -31,7 +35,7 @@ export default {
 
   setup(){
 
-      const user = getUser()
+      const {user} = getUser()
       const router = useRouter()
 
       const handleLogout = async()=>{

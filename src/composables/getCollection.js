@@ -1,52 +1,52 @@
 import { ref, watchEffect } from 'vue'
 import { db } from '../firebase/config'
 
-const getCollection = async (collection)=>{
+const getCollection = (collection)=>{
 
     const documents = ref(null)
     const error = ref(null)
 
             /* 1  */
 
-    let collectionRef = await db.collection(collection)
+    let collectionRef =  db.collection(collection)
         .orderBy('createdAt')
+
+       
 
         //An unsubscribe function that can be called to cancel the snapshot listener.
 
-        const unsub = collectionRef.onSnapshot((modifiedCollection)=>{
+ const unsub =  collectionRef.onSnapshot((modifiedCollection) => {
 
-            let results = []
-        
-            //returns a unsub
-        modifiedCollection.docs.forEach((doc) =>{
-
-            /*  2  */
-
-                doc.data().createdAt && results.push(  {...doc.data(), id : doc.id }  )
-
-            }) 
-
+        let results = []
+            
+                //returns a unsub
+       modifiedCollection.docs.forEach((doc) =>{
+                /*  2  */
+                    doc.data().createdAt && results.push(  {...doc.data(), id : doc.id }  )
+                }) 
+             documents.value = results
             error.value = null
 
-    }, (err)=>{
-       documents.value = null; 
-      err.message = err;
+            }, (err)=>{
+            documents.value = null; 
+            error.value = err.message;
+                console.log(error.value)
+            })
+             
 
-    })
-
-    watchEffect((onInvalidate)=>{
-        onInvalidate(()=>{
-            unsub()
-        })
-     })
+        watchEffect((onInvalidate)=>{
+            onInvalidate(()=>{
+                unsub()
+            })
+          })
    
 
 
-        return { error, unsub }
+        return { error,documents }
 
 }
 
-export { getCollection, error }
+export { getCollection}
 
 
     /*

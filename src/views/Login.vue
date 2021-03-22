@@ -15,13 +15,15 @@
 
 import {usesignIn,error } from '../composables/useSignin'
 import {ref} from 'vue'
+import {useRouter} from 'vue-router'
+
 export default {
 
   setup() {
       
        const email = ref('')
        const password = ref ('')
-       
+       const router = new useRouter()
 
       const handleLogin = async()=>{
           
@@ -31,6 +33,9 @@ export default {
           
           if(error.value)
              console.log(res,"res")
+          else{
+                router.push({name:"Home"})
+           }   
 
        }
      
