@@ -10,7 +10,7 @@
 import { getCollection } from "../composables/getCollection";
 import ListView from "../components/ListView";
 
-import {ref} from 'vue'
+
 export default {
    components: { ListView },
 

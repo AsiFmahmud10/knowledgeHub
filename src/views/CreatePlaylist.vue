@@ -50,6 +50,7 @@ export default {
       }
     };
 
+ const _id = ref(null) ;
 
     const handleSubmit = async() => {
       isPanding.value = true
@@ -57,7 +58,7 @@ export default {
         console.log("file selected to upload");
         const { filePath,Uploaded_url } = await uploadFile(file);
 
-       const {error}= await useCollection('playList',{
+       const {error,createdDocRef}= await useCollection('playList',{
            
            title:title.value,
            details :details.value,
@@ -74,11 +75,13 @@ export default {
           console.log("Playlist Added")
 
         }
+          _id.value = createdDocRef.value.id
       }
+     
 
       isPanding.value = false
 
-      router.push({name: "Home"})
+      router.push({name: "ShowPlaylist",params:{id:_id.value}})
 
     };
 

@@ -1,18 +1,24 @@
 <template>
   <div v-for="i in props" :key="i">
-    <div class="playList">
-      <div class="thumbnail">
-        <img :src="i.publicCoverPhotoUrl" />
-      </div>
+    <router-link :to="{name:'ShowPlaylist',params:{id:i.id}}" >
 
-      <div class="info">
-        <h3>{{ i.title }}</h3>
-        <p>created by {{ i.title }}</p>
-      </div>
+          <div class="playList">
+            <div class="thumbnail">
+              <img :src="i.publicCoverPhotoUrl" />
+            </div>
 
-      <div class="nbooks">number of books {{ i.books.length }}</div>
-    </div>
-  </div>
+            <div class="info">
+              <h3>{{ i.title }}</h3>
+              <p>created by {{ i.title }}</p>
+            </div>
+
+            <div class="nbooks">number of books {{ i.books.length }}</div>
+          </div>
+          
+     </router-link>
+
+
+      </div>
 </template>
 
 <script>
@@ -46,7 +52,7 @@ export default {
 .thumbnail {
 }
 .thumbnail img {
-  max-width: 350px;
+  max-width: 250px;
   display: block;
   border-radius: 10px;
 }

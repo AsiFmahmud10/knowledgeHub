@@ -1,27 +1,17 @@
 <template>
+  <div>
+      game {{id}}
 
-     <div>
+  </div>
 
-
-    </div>
-
-  
 </template>
 
 <script>
-import {getCollection} from '../composables/getCollection'
-
 export default {
-     setup(){
-     
-      const {error,collectionRef} = getCollection('playList')
-            console.log(collectionRef,"collection")
-
-
-
-     }
- 
-
+    props:['id'],
+    setup(){
+            
+    }
 }
 </script>
 

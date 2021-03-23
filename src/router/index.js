@@ -3,22 +3,20 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import CreatePlaylist from '../views/CreatePlaylist.vue'
+
 import ShowPlaylist from '../views/ShowPlaylist'
+
+
+
+
 
 /// route guard
 import {AuthRef} from '../firebase/config'
 
 let requireAuth = (to, from, next)=>{
-
-  let user = AuthRef.currentUser
-  if(user){
-    next()
-
-  }else{
-    
-    next({name:"Login"})
-  }
-
+      let user = AuthRef.currentUser
+      if(user) next()
+      else  next({name:"Login"})
 }
 
 
@@ -47,10 +45,13 @@ const routes = [
     beforeEnter: requireAuth
 
   },
+ 
   {
-    path:'/showplaylist',
+    path:'/showplaylist/:id',
     name:'ShowPlaylist',
     component:ShowPlaylist,
+    props:true,
+    beforeEnter:requireAuth
   }
   
 ]
