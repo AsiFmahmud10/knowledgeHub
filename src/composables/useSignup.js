@@ -8,6 +8,7 @@ const signup = async(email, password)=>{
     try{
     
        const res = await AuthRef.createUserWithEmailAndPassword(email , password)
+
        return {res}
        
    }
@@ -17,6 +18,9 @@ const signup = async(email, password)=>{
         console.log(err) 
         error.value = err.message 
    }
+
+   var user = firebase.auth().currentUser;
+
 
 }
 export {signup, error}

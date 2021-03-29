@@ -1,18 +1,20 @@
 <template>
-  <div v-for="i in props" :key="i">
+  <div v-for="i in props" :key="i" class="back">
     <router-link :to="{name:'ShowPlaylist',params:{id:i.id}}" >
 
           <div class="playList">
-            <div class="thumbnail">
-              <img :src="i.publicCoverPhotoUrl" />
-            </div>
 
-            <div class="info">
-              <h3>{{ i.title }}</h3>
-              <p>created by {{ i.title }}</p>
-            </div>
+                <div class="container">
+                  <img :src="i.publicCoverPhotoUrl" class="d"/>
+                </div>
+
+                <div class="info">
+                  <h3>{{ i.title }}</h3>
+                  <p>created by {{ i.title }}</p>
+                </div>
 
             <div class="nbooks">number of books {{ i.books.length }}</div>
+          
           </div>
           
      </router-link>
@@ -28,39 +30,44 @@ export default {
 </script>
 
 <style scoped>
-.playList {
-  width: 90%;
-  display: flex;
-  box-shadow: 1px 2px 3px 1px rgba(219, 215, 215, 0.5);
-  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
+.back{
 
-  background: rgba(231, 231, 231, 0.1);
-  margin: 16px auto;
-  display: flex;
-  border: 10px;
-  align-items: center;
-  transition: all .2s ease;
 }
 
+.playList {
+  max-width: 700px;
+  display: flex;
+  background: white;
+  margin: 16px auto;
+  height: 160px;
+  padding: 20px;
+  border-radius: 8px;
+  align-items:center;
+  justify-content:space-between;
+  transition: all .2s ease;
+}
 .playList:hover {
   box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
 
-  background: rgb(247, 243, 243);
+  background: whitesmoke;
 
   transition: all .2s ease;
 }
-.thumbnail {
+.container{
+  width: 150px;
+  height: 150px;
+   
 }
-.thumbnail img {
-  max-width: 250px;
-  display: block;
-  border-radius: 10px;
+.d{
+   width: 100%;
+   height: 100%;
+  border-radius: 8px;
+  border: 4px solid #9999;
 }
 .info {
-  margin: 0 30px;
+  margin: 30px;
 }
 .nbooks {
-  margin-left: auto;
-  margin-right: 5px;
+
 }
 </style>

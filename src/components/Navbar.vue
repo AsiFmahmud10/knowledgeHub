@@ -53,14 +53,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 nav{
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var( --secondary);
+  background: white;
   padding: 7px;
 }
 

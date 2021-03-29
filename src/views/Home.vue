@@ -1,9 +1,11 @@
 <template>
-<div>
-  
-  <ListView :props="documents"/>
-
-</div>
+   <div v-if="documents != null" >
+      <div class="main">
+        
+        <ListView :props="documents"/>
+       
+      </div>
+ </div>
 </template>
 
 <script>
@@ -16,10 +18,16 @@ export default {
 
   setup() {
     const { error, documents } = getCollection("playList");
-    
+      console.log(documents.value,"asdasdasdasd")
     return { documents, error };
   },
 };
 </script>
+ 
 
-<style></style>
+<style >
+ .main{
+   height: 100vh;
+ }
+
+</style>
