@@ -6,26 +6,40 @@
           <div class="flex">
             <div class =" photo ">
               <img :src="data.publicCoverPhotoUrl" style="max-width:100%" alt="">
-                    <div class="createdAt">{{data.createdAt.toDate()}}</div>
+                    <div class="createdAt"> Ctreated At :{{data.createdAt.toDate().toDateString()}} </div> 
+                    
+        <!-- delete Polaylist  -->
+
+             <div v-if="showDelete">
+
+                  <button class="error"  @click="handleDelete" >delete</button>
+                  <div v-if="errorInFileDelete">{{errorInFileDelete}}</div>
+             </div>
 
             </div>
               <div>
                     <div class="title  one">
-                            {{data.title}}
+                          title:  {{data.title}}
                     </div>
 
                     <div class="details one">
-                      {{data.details}}
+                     details: {{data.details}}
                     </div>
                     <div class="details one">
-                      {{data.details}}
+                      owner : {{data.owner}}
                     </div>
               </div>
           </div>
 
     </div>
-     <div class="error" v-if="error != null ">{{error}}</div>
-      
+    <div v-else> PlayList is not exist </div>
+
+          <!-- error  -->
+
+   <div class="error" v-if="error != null ">
+     {{error}}
+   </div>
+    
   </div>
 
 </template>
@@ -34,18 +48,42 @@
 
 import {getDoc} from '../composables/getDoc'
 import {getUser} from '../composables/getUser'
-import {ref} from 'vue'
+import {deletFile} from '../composables/deleteFile'
+import {deleteDoc} from '../composables/deleteDoc'
+
+import {computed, ref} from 'vue'
+
 export default {
 
     props:['id'],
+   
+    setup(props){ 
 
-    setup(props){
             
         const {error,data} = getDoc('playList', props.id)
-        const showDelete = ref(false)
-         const user = getUser()
+         const {user} = getUser()
+        const errorInFileDelete = ref (null)
+         
 
-          return {data,error}
+         const showDelete = computed(()=>{
+
+             return user.value && data.value && user.value.uid === data.value.owner
+                  
+         })
+
+         const handleDelete = async()=>{
+            
+            const {deleteFileError} = await deletFile(data.value.deleteCoverPath)
+            const {error,res} = await deleteDoc('playList',props.id)
+
+            
+            if(error.value || deleteFileError.value)
+                errorInFileDelete.value = error.value ? error.value : deleteFileError.value
+
+
+         }
+
+          return {data,error,showDelete,handleDelete,errorInFileDelete}
     }
 }
 </script>
@@ -76,6 +114,7 @@ export default {
   border-radius:20px;
   padding:15px 20px;
   margin: 8px;
+  margin-left: auto;
 }
 
 </style>

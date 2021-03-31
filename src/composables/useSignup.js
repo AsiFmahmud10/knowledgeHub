@@ -3,13 +3,23 @@ import {AuthRef} from '../firebase/config'
 
 const error = ref(null)
 
-const signup = async(email, password)=>{
+const signup = async(email, password , _displayName)=>{
  
     try{
     
        const res = await AuthRef.createUserWithEmailAndPassword(email , password)
+       const user = AuthRef.currentUser
 
-       return {res}
+    
+       user.updateProfile({
+           displayName: _displayName,
+           
+       }).then(function() {
+           console.log(user)
+       }).catch(function(error) {
+           console.log(err.message)
+       });
+       
        
    }
    catch(err){
@@ -19,7 +29,7 @@ const signup = async(email, password)=>{
         error.value = err.message 
    }
 
-   var user = firebase.auth().currentUser;
+  
 
 
 }

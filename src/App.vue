@@ -23,7 +23,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: rgb(233, 229, 229);
+  height: 100vh;
+  background: rgb(245, 243, 243);
   
 }
 

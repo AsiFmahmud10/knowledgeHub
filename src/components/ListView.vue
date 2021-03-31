@@ -47,9 +47,7 @@ export default {
   transition: all .2s ease;
 }
 .playList:hover {
-  box-shadow: 1px 2px 3px rgba(50, 50, 50, 0.5);
-
-  background: whitesmoke;
+  box-shadow:0px 10px 13px -7px orangered;
 
   transition: all .2s ease;
 }

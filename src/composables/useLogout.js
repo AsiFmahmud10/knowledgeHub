@@ -11,7 +11,7 @@ const logOut= async()=>{
  
     await AuthRef.signOut()
     console.log("logOut successful")
-    error = null;
+    error.value = null;
 
  }catch(err){
     

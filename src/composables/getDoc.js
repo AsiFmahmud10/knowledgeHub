@@ -16,8 +16,10 @@ const getDoc = (collection,id)=>{
             console.log(snap.data(),"data")
             error.value = null
         }else{
+            
+            data.value = null
             console.log("huuu")
-            error.value = "the parameter is false"
+            error.value = "PlayList is not exist"
         }
         
        

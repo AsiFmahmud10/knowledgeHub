@@ -16,7 +16,7 @@ AuthRef.onAuthStateChanged( (_user)=> {
   });
 
   const getUser=()=>{
-    console.log(user.value.uid,"user_id")
+    
 
       return {user}
   }

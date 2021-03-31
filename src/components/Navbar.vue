@@ -9,7 +9,7 @@
 
         <div class="link">
             
-            <div  v-if="!user">
+            <div  v-if="user === null">
                   <router-link :to="{name: 'Signup'}">Sign up</router-link>
                   <router-link :to="{name: 'Login'}">Log In</router-link>
             </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+
 import {getUser} from '../composables/getUser'
 import {logOut} from '../composables/useLogout'
 import {useRouter} from 'vue-router'
@@ -40,8 +41,9 @@ export default {
 
       const handleLogout = async()=>{
          const {error} = await logOut()
-           router.push({name:'Home'})
+            console.log(user.value,"user")
 
+           router.push({name:'Login'})
       }
 
 

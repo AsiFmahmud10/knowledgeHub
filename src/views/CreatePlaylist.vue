@@ -62,7 +62,7 @@ export default {
            
            title:title.value,
            details :details.value,
-           owner : user.value.uid,
+           owner : user.value.displayName,
            books :[],
            deleteCoverPath : filePath.value,
            publicCoverPhotoUrl:Uploaded_url.value,
